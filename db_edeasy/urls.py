@@ -20,5 +20,7 @@ from . import mainView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('questions_db.urls')),
-    path('',mainView.Index.as_view(), name='Home')
+    path('',mainView.Index.as_view(), name='Home'),
+    path('topics/',mainView.Topics.as_view(), name='Topics'),
+    path('questions/',mainView.Questions.as_view(), name='Questions'),
 ]
