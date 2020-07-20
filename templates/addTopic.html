@@ -1,4 +1,45 @@
 {% extends 'index.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-Topics
+
+
+
+
+<div class="container">
+  <div class="row padding_extra">
+    <h4>A form to add topics, Questions qill fall in these topics; eg algebra, number system and so on.</h4>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="padding_extra">
+        <form method="POST" class="form-group">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-secondary margin_top">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-4">
+
+
+      <ul class="list-group padding_extra">
+        {% for topic in topics %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ topic.name }}
+          <span class="badge badge-secondary badge-pill">{{ topic.level }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
 {% endblock %}

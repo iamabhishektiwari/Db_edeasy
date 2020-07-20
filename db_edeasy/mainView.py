@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
-
+from .forms import TopicForm, McqQuestionForm
+from questions_db.models import Topic
+from django.shortcuts import redirect
 
 
 class Index(View):
@@ -17,22 +19,34 @@ class Index(View):
 
 
 class Topics(View):
+    form = TopicForm()
 
     def get(self, request):
+        topics = Topic.objects.all()
         context = {
-            'test': "latest_question_list",
+            "form": self.form,
+            "topics": topics,
             }
         return render(request, 'addTopic.html', context)
 
     def post(self, request):
-        pass
+        submitedForm = TopicForm(request.POST)
+        if submitedForm.is_valid():
+            print("here we are true")
+            submitedForm.save()
+            return redirect('Topics')
+        else:
+            return redirect('Topics')
+
+
 
 
 class Questions(View):
 
     def get(self, request):
+        form = McqQuestionForm()
         context = {
-            'test': "latest_question_list",
+            'form': form,
             }
         return render(request, 'addQuestions.html', context)
 

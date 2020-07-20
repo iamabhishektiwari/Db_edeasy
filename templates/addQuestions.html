@@ -1,5 +1,26 @@
 {% extends 'index.html'%}
+{% load crispy_forms_tags %}
+
 
 {% block content %}
-Questions
+
+<div class="container">
+  <div class="row padding_extra">
+    <h4>A form to add Questions.</h4>
+  </div>
+
+
+      <div class="padding_extra">
+
+        <form method="POST" class="form-group">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="btn btn-secondary margin_top">Save</button>
+        </form>
+      </div>
+
+  
+
+</div>
+
 {% endblock %}
