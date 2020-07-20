@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
 from .forms import TopicForm, McqQuestionForm
-from questions_db.models import Topic
+from questions_db.models import Topic, McqQuestion
 from django.shortcuts import redirect
 
 
@@ -32,7 +32,6 @@ class Topics(View):
     def post(self, request):
         submitedForm = TopicForm(request.POST)
         if submitedForm.is_valid():
-            print("here we are true")
             submitedForm.save()
             return redirect('Topics')
         else:
@@ -45,10 +44,17 @@ class Questions(View):
 
     def get(self, request):
         form = McqQuestionForm()
+        questions = McqQuestion.objects.all()
         context = {
             'form': form,
+            'questions':questions,
             }
         return render(request, 'addQuestions.html', context)
 
     def post(self, request):
-        pass
+        form = McqQuestionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Questions')
+        else:
+            return redirect('Questions')

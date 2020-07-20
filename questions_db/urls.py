@@ -5,6 +5,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'Topics', views.TopicViewSet)
 router.register(r'Level', views.LevelViewSet)
+router.register(r'McqQuestion', views.McqQuestionViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
