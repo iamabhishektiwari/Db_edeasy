@@ -23,4 +23,5 @@ urlpatterns = [
     path('',mainView.Index.as_view(), name='Home'),
     path('topics/',mainView.Topics.as_view(), name='Topics'),
     path('questions/',mainView.Questions.as_view(), name='Questions'),
+    path('ExamRel/',mainView.ExamRel.as_view(), name='ExamRel'),
 ]

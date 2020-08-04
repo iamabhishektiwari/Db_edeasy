@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Topic, Level, McqQuestion
+from .models import Topic, Level, McqQuestion,RelatedExam
 
 
 
@@ -21,4 +21,10 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
 class McqQuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = McqQuestion
+        fields = '__all__'
+
+
+class RelatedExamSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = RelatedExam
         fields = '__all__'

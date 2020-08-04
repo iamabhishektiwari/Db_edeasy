@@ -10,25 +10,28 @@
     <h4>A form to add topics, and related exam: Questions qill fall in these topics; eg algebra, number system and so on.</h4>
   </div>
   <div class="row">
+
     <div class="col-6">
       <div class="padding_extra">
-        Topics eg. Algebra, number system, etc
+        Related Exams eg SBI-PO, PRE, Mains
         <form method="POST" class="form-group">
           {% csrf_token %}
-          {{ form|crispy }}
+          {{ ExamForm|crispy }}
           <button type="submit" class="btn btn-secondary margin_top">Save</button>
         </form>
       </div>
     </div>
 
-    <div class="col-4">
+    
 
-      Topic Table
+    <div class="col-4">
+      Exam Table
+
       <ul class="list-group padding_extra">
-        {% for topic in topics %}
+        {% for exam in examRelated %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{ topic.name }}
-          <span class="badge badge-secondary badge-pill">{{ topic.level }}</span>
+          {{ exam.name }}
+          <span class="badge badge-secondary badge-pill">{{ exam.level }}</span>
         </li>
         {% endfor %}
       </ul>
